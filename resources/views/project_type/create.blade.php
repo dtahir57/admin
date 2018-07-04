@@ -1,0 +1,33 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Project Types</h5>
+    <a href="{{ route('project_type.index') }}" class="btn btn-primary float-right">View All</a>
+  </div>
+</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('city.index') }}">Project Types</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Create</li>
+  </ol>
+</nav>
+@foreach($errors->all() as $error)
+  <li class="alert alert-danger">{{ $error }}</li>
+@endforeach
+<div class="card">
+  <div class="card-header">New Project Type</div>
+  <div class="card-body">
+    <form action="{{ route('project_type.store') }}" method="POST">
+    	{{ csrf_field() }}
+    	<div class="form-group">
+    		<label for="ProjectType">Project Type</label>
+    		<input type="text" name="project_type" required class="form-control" placeholder="Project Type" value="{{ old('project_type') }}" />
+    	</div>
+    	<button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+@endsection
