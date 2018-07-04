@@ -256,6 +256,10 @@ Route::group(['prefix' => '/admin'], function () {
 	Route::group(['middleware' => ['permission:Delete_Project_Type']], function () {
 		Route::delete('project_types/{id}', 'ProjectTypeController@destroy')->name('project_type.destroy');
 	});
+
+	Route::group(['middleware' => ['permission:View_Calender']], function () {
+		Route::get('calender', 'CalenderController@index')->name('calender.index');
+	});
 	/**
 	 * Ending Routes For PojectypeContoller
 	 */

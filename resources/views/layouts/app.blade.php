@@ -14,8 +14,12 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+    @yield('calendar')
 </head>
 <body>
     <div id="app">
@@ -99,6 +103,12 @@
                   {{(Request::is('admin/events/'.request()->route('id').'/edit') ? 'active' : '')}}" href="{{ route('event.index') }}">Events</a>
                 </li>
                 @endif
+                @if(auth::user()->can('View_Calender'))
+                <li class="nav-item">
+                  <a class="nav-link
+                  {{(Request::is('admin/calender')? 'active' : '')}}" href="{{ route('calender.index') }}">Calender</a>
+                </li>
+                @endif
                 @if(auth::user()->can('View_Event_Place'))
                 <li class="nav-item">
                   <a class="nav-link
@@ -174,7 +184,6 @@
         @endguest
     </div>
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
 @yield('script')
 </body>
 </html>
