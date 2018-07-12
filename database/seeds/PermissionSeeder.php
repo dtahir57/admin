@@ -74,5 +74,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['module' => 'project_type', 'name' => 'Delete_Project_Type']);
 
         Permission::create(['module' => 'calender', 'name' => 'View_Calender']);
+
+        Permission::create(['module' => 'reservation', 'name' => 'View_Reservation']);
     }
 }

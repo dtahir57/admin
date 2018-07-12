@@ -7,6 +7,7 @@ use App\Project;
 use App\Company;
 use App\Http\Requests\ProjectRequest;
 use Session;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -17,8 +18,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(15);
-        return view('project.index', compact('projects'));
+        if (Auth::user()->hasRole('Admin')) {
+        $projects = Project::latest()->get();
+        return view('project.index', compact('projects')); 
+        } else {
+            $projects = Project::where('user_id', Auth::user()->id)->get();
+            return view('project.index', compact('projects'));
+        }
     }
 
     /**
@@ -42,6 +48,7 @@ class ProjectController extends Controller
     {
         $project = new Project;
         $project->company_id = $request->company_name;
+        $project->user_id = Auth::user()->id;
         $project->name = $request->name;
         $project->description = $request->description;
         $project->lat = $request->lat;
@@ -88,6 +95,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $project->company_id = $request->company_name;
+        $project->user_id = Auth::user()->id;
         $project->name = $request->name;
         $project->description = $request->description;
         $project->lat = $request->lat;

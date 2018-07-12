@@ -116,6 +116,12 @@
                   {{(Request::is('admin/event_places/'.request()->route('id').'/edit') ? 'active' : '')}}" href="{{ route('event_place.index') }}">Event Place</a>
                 </li>
                 @endif
+                @if(auth::user()->can('View_Reservation'))
+                <li class="nav-item">
+                  <a class="nav-link
+                  {{(Request::is('admin/reservations') ? 'active' : '')}}" href="{{ route('reservation.index') }}">Reservation</a>
+                </li>
+                @endif
                 @if(auth::user()->can('View_Project'))
                 <li class="nav-item">
                   <a class="nav-link

@@ -265,6 +265,17 @@ Route::group(['prefix' => '/admin'], function () {
 	 */
 	
 	/**
+	 * Starting Routes For ReservationController
+	 */
+	Route::group(['middleware' => ['permission:View_Reservation']], function () {
+		Route::get('reservations', 'ReservationController@index')->name('reservation.index');
+		Route::patch('reservations', 'ReservationController@update')->name('reservation.update');
+	});
+	/**
+	 * Ending Routes For ReservationController
+	 */
+
+	/**
 	 * Starting Routes For UserTypeController
 	 */
 	// Route::group(['middleware' => ['permission:View_User_Type']], function () {

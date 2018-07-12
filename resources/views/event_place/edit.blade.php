@@ -37,10 +37,6 @@
         <label for="DateTo">Date To</label>
         <input type="number" min="1" name="reserved_co" required class="form-control" placeholder="Reserved Co" value="{{ $event_place->reserved_co }}" />
       </div>
-      <div class="form-group">
-        <input type="checkbox" name="reserved" @if($event_place->reserved == 1) checked @endif />
-        <label>Reserved</label>
-      </div>
     	<button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>

@@ -21,8 +21,14 @@ class CreateEventPlacesTable extends Migration
                   ->on('events')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->string('name');
-            $table->boolean('reserved')->default(1);
+            $table->boolean('reserved')->default(0);
             $table->integer('reserved_co');
             $table->timestamps();
         });

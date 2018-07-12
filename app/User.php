@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Project;
+use App\ProjectUnit;
 
 class User extends Authenticatable
 {
@@ -27,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function projects () {
+        return $this->hasMany(Project::class, 'user_id');
+    }
+
+    public function project_units () {
+        return $this->hasMany(ProjectUnit::class, 'user_id');
+    }
 }

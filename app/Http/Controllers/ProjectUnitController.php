@@ -9,6 +9,7 @@ use App\Http\Requests\ProjectUnitRequest;
 use Session;
 use App\City;
 use App\ProjectType;
+use Auth;
 
 class ProjectUnitController extends Controller
 {
@@ -19,8 +20,13 @@ class ProjectUnitController extends Controller
      */
     public function index()
     {
-        $project_units = ProjectUnit::all();
-        return view('project_unit.index', compact('project_units'));
+        if (Auth::user()->hasRole('Admin')) {
+            $project_units = ProjectUnit::latest()->get();
+            return view('project_unit.index', compact('project_units'));   
+        } else {
+            $project_units = ProjectUnit::where('user_id', Auth::user()->id)->get();
+            return view('project_unit.index', compact('project_units'));
+        }
     }
 
     /**
@@ -48,6 +54,7 @@ class ProjectUnitController extends Controller
         $type = explode('|', $request->type);
         $project_unit = new ProjectUnit;
         $project_unit->project_id = $request->project_name;
+        $project_unit->user_id = Auth::user()->id;
         $project_unit->name = $request->name;
         $project_unit->city_id = $city[0];
         $project_unit->project_type_id = $type[0];
@@ -113,6 +120,7 @@ class ProjectUnitController extends Controller
         $project_unit = ProjectUnit::find($id);
         $project_unit->project_id = $request->project_name;
         $project_unit->name = $request->name;
+        $project_unit->user_id = Auth::user()->id;
         $project_unit->city_id = $city[0];
         $project_unit->project_type_id = $type[0];
         $project_unit->rate_card = $request->rate_card;

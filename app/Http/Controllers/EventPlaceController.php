@@ -88,7 +88,6 @@ class EventPlaceController extends Controller
         $event_place->event_id = $request->event_id;
         $event_place->name = $request->name;
         $event_place->reserved_co = $request->reserved_co;
-        $event_place->reserved = ($request->reserved)?1:0;
         $event_place->update();
         if ($event_place) {
             Session::flash('updated', 'Event Place Updated Successfully');
