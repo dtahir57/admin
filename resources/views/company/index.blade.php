@@ -40,7 +40,7 @@
 			<tr>
 				<td>{{ $loop->index + 1 }}</td>
 				<td>
-					<img src="{{ url($company->logo) }}" style="width: 75px; height: 70px;" alt="Company Logo" />
+					<img src="{{ Storage::url($company->logo) }}" style="width: 75px; height: 70px;" alt="Company Logo" />
 				</td>
 				<td>{{ $company->name }}</td>
 				<td>{{ $company->email }}</td>

@@ -42,18 +42,15 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        // dd($request);
-        $company = new Company;
         if (Input::hasFile('logo')) {
-            $logo = Input::file('logo');
-            $logo->move('uploads/', $logo->getClientOriginalName());
+            $company = Company::create([
+                'company_type_id' => $request->company_type,
+                'name' => $request->name,
+                'tel' => $request->tel,
+                'email' => $request->email,
+                'logo' => $request->logo->store('public/companies')
+            ]);
         }
-        $company->company_type_id = $request->company_type;
-        $company->name = $request->name;
-        $company->tel = $request->tel;
-        $company->email = $request->email;
-        $company->logo = 'uploads/'. $logo->getClientOriginalName();
-        $company->save();
         if ($company) {
             Session::flash('created', 'Company Created Sucessfully');
             return redirect()->route('company.index');

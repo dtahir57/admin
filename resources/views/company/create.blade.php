@@ -46,7 +46,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="logo">Logo</label>
-          <input type="file" name="logo" required class="form-control" />
+          <input type="file" name="logo" required class="form-control" accept="image/*" />
         </div>
       </div>
     	<button type="submit" class="btn btn-primary">Save</button>
