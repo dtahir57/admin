@@ -29,7 +29,7 @@ class CreateEventPlacesTable extends Migration
                   ->onUpdate('cascade');
             $table->string('name');
             $table->boolean('reserved')->default(0);
-            $table->integer('reserved_co');
+            $table->boolean('is_reservable')->default(0);
             $table->timestamps();
         });
     }

@@ -271,6 +271,7 @@ Route::group(['prefix' => '/admin'], function () {
 		Route::get('reservations', 'ReservationController@index')->name('reservation.index');
 		Route::patch('reservations', 'ReservationController@update')->name('reservation.update');
 	});
+	Route::patch('event_place/reserve/{id}', 'ReservationController@updateReservable')->name('update.reservable');
 	/**
 	 * Ending Routes For ReservationController
 	 */

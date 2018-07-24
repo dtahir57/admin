@@ -34,8 +34,7 @@ class EventPlaceRequest extends FormRequest
                 {
                     return [
                             'name' => 'required|max:255|unique:event_places',
-                            'event_id' => 'required',
-                            'reserved_co' => 'required'
+                            'event_id' => 'required'
                         ];
                 }
             case 'PUT':
@@ -43,8 +42,7 @@ class EventPlaceRequest extends FormRequest
                 {
                     return [
                         'name' => 'required|max:255',
-                        'event_id' => 'required',
-                        'reserved_co' => 'required'
+                        'event_id' => 'required'
                     ];
                 }
             default:

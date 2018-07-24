@@ -28,7 +28,6 @@
 			<tr>
 				<th>#</th>
 				<th>Name</th>
-				<th>Reserved Co.</th>
 				<th>Reserved</th>
 				<th>Action</th>
 			</tr>
@@ -38,7 +37,6 @@
 			<tr>
 				<td>{{ $loop->index + 1 }}</td>
 				<td>{{ $event_place->name }}</td>
-				<td>{{ $event_place->reserved_co }}</td>
 				<td>
 					@if ($event_place->reserved == 1)
 					<span class="badge badge-success">Yes</span>

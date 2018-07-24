@@ -15,8 +15,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $event_places = EventPlace::latest()->get();
-        return view('reservation.index', compact('event_places'));
+        $notReservable = EventPlace::where('is_reservable', 0)->get();
+        $reservable = EventPlace::where('is_reservable', 1)->get();
+        return view('reservation.index', compact('notReservable', 'reservable'));
     }
 
     /**
@@ -73,6 +74,7 @@ class ReservationController extends Controller
     {
         // dd($request->id);
         $event_place = EventPlace::find($request->id);
+        // dd($request);
         if ($event_place->reserved == 1) {
             $event_place->reserved = 0;
             $event_place->user_id = null;
@@ -94,5 +96,13 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateReservable(Request $request, $id) {
+        $event_place = EventPlace::findOrFail($id);
+        $event_place->is_reservable = $request->reservable;
+        $event_place->update();
+        
+        return response()->json('Success', 200);
     }
 }

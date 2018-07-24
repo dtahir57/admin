@@ -43,7 +43,6 @@ class EventPlaceController extends Controller
         $event_place = new EventPlace;
         $event_place->event_id = $request->event_id;
         $event_place->name = $request->name;
-        $event_place->reserved_co = $request->reserved_co;
         $event_place->save();
         if ($event_place) {
             Session::flash('created', 'New Event Place Added Successfully');
@@ -87,7 +86,6 @@ class EventPlaceController extends Controller
         $event_place = EventPlace::find($id);
         $event_place->event_id = $request->event_id;
         $event_place->name = $request->name;
-        $event_place->reserved_co = $request->reserved_co;
         $event_place->update();
         if ($event_place) {
             Session::flash('updated', 'Event Place Updated Successfully');

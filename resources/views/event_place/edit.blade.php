@@ -33,10 +33,6 @@
           @endforeach
         </select>
       </div>
-      <div class="form-group">
-        <label for="DateTo">Date To</label>
-        <input type="number" min="1" name="reserved_co" required class="form-control" placeholder="Reserved Co" value="{{ $event_place->reserved_co }}" />
-      </div>
     	<button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
